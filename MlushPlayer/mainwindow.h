@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "VkManager/VkOAuthView.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -12,13 +14,21 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget *parent = 0);
-	~MainWindow();
+	enum Pages
+	{
+		PageAuth = 0
+	};
 
-	void PlaceWidget(QWidget* widget);
+	explicit MainWindow(QWidget *parent = 0);
+	virtual ~MainWindow();
+
+	void SetPage(Pages page);
+	VkOAuthView* GetAuthPage();
 
 private:
 	Ui::MainWindow *ui;
+
+	QScopedPointer<VkOAuthView> m_vkAuthView;
 };
 
 #endif // MAINWINDOW_H

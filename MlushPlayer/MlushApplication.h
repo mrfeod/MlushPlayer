@@ -8,7 +8,8 @@
 #include "mainwindow.h"
 
 #include "VkManager/VkManager.h"
-#include "VkManager/VkOAuthView.h"
+
+#include "PlaylistController.h"
 
 class MlushApplication : public QApplication
 {
@@ -31,7 +32,8 @@ private:
 	QWidget* m_mainWindow;
 
 	QScopedPointer<VkManager> m_vkManager;
-	QScopedPointer<VkOAuthView> m_vkAuthView;
+
+	QScopedPointer<PlaylistController> m_playlistController;
 };
 
 #define mlushApp (static_cast<MlushApplication*>(QApplication::instance()))

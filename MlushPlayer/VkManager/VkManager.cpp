@@ -19,34 +19,36 @@ void VkManager::SetUserData(const QString &accessToken, int expiresInSecs, int u
 	m_haveUserData = true;
 }
 
-QStringList VkManager::GetPlaylist(const QString& query)
+void VkManager::GetPlaylist()
 {
 	if(!m_haveUserData)
-		return QStringList();
+		return;
 
-	QUrlQuery request("api.vk.com/method/audio.get?");
+	QUrlQuery request("https://api.vk.com/method/audio.get?");
 
 	request.addQueryItem("access_token",m_accessToken);
 	request.addQueryItem("need_user", "0");
 	request.addQueryItem("user_id", m_userID);
 	request.addQueryItem("v","5.37");
 
-
 	QNetworkAccessManager *manager = new QNetworkAccessManager(this);
 	m_reply = manager->get(QNetworkRequest(request.toString()));
-	QObject::connect(m_reply,SIGNAL(finished()),this, SLOT(slotDone()));
-
-	return QStringList();
+	connect(m_reply, &QNetworkReply::finished ,this, &VkManager::onReply);
 }
 
-void VkManager::slotDone(bool error){
-	if(error)
-	   return;
-	else{
-		QStringList list; //list with mp3
+struct PlaylistItemData
+{
+	QString artist;
+	QString title;
+	QString url;
+	int duration;
+};
 
-	   QString str = m_reply->readAll();
-	}
+void VkManager::onReply()
+{
+	QString result = m_reply->readAll();
 
 	m_reply->close();
+
+	emit success(result);
 }

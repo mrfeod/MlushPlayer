@@ -2,12 +2,17 @@
 #include "ui_mainwindow.h"
 
 #include "VkManager/VkOAuthView.h"
+#include <QListWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
-	ui(new Ui::MainWindow)
+	ui(new Ui::MainWindow),
+	m_vkAuthView(new VkOAuthView(this))
 {
 	ui->setupUi(this);
+
+	// Порядок важен
+	ui->stackedWidget->addWidget(m_vkAuthView.data());
 }
 
 MainWindow::~MainWindow()
@@ -15,8 +20,12 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
-void MainWindow::PlaceWidget(QWidget *widget)
+void MainWindow::SetPage(Pages page)
 {
-	widget->setParent(ui->centralWidget);
-	widget->show();
+	ui->stackedWidget->setCurrentIndex(page);
+}
+
+VkOAuthView* MainWindow::GetAuthPage()
+{
+	return m_vkAuthView.data();
 }

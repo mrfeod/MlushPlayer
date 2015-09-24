@@ -1,18 +1,21 @@
 #include "MlushApplication.h"
-#include "mainwindow.h"
-
 
 void MlushApplication::Initialize()
 {
 	m_vkManager.reset(new VkManager(this));
-	m_vkAuthView.reset(new VkOAuthView());
+	m_playlistController.reset(new PlaylistController(this));
 
-	m_vkAuthView->SetAppID(CONST_APP_ID);
-	m_vkAuthView->SetPermissions(VkOAuthView::Audio);
+	mainWindow()->GetAuthPage()->SetAppID(CONST_APP_ID);
+	mainWindow()->GetAuthPage()->SetPermissions(VkOAuthView::Audio);
 
-	connect(m_vkAuthView.data(), &VkOAuthView::AuthSuccess, m_vkManager.data(), &VkManager::SetUserData);
+	connect(mainWindow()->GetAuthPage(), &VkOAuthView::AuthSuccess, [this](const QString &accessToken, int expiresInSecs, int userID)
+	{
+		m_vkManager->SetUserData(accessToken, expiresInSecs, userID);
+		m_vkManager->GetPlaylist();
+	});
 
-	mainWindow()->PlaceWidget(m_vkAuthView.data());
+	connect(m_vkManager.data(), &VkManager::success, m_playlistController.data(), &PlaylistController::SetPlaylistFromJSON);
 
-	m_vkAuthView->OpenAuthPage();
+	//@todo Делать это по кнопке
+	mainWindow()->GetAuthPage()->OpenAuthPage();
 }

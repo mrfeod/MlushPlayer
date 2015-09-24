@@ -3,7 +3,6 @@
 
 #include <QObject>
 
-#include <QStringList>
 #include <QNetworkReply>
 
 class VkManager : public QObject
@@ -15,13 +14,13 @@ public:
 public slots:
 	void SetUserData(const QString &accessToken, int expiresInSecs, int userID);
 
-	QStringList GetPlaylist(const QString& query = QString());
-
-signals:
-	void success(QStringList list);
+	void GetPlaylist();
 
 private slots:
-	void slotDone(bool error);
+	void onReply();
+
+signals:
+	void success(QString result);
 
 private:
 	QString m_accessToken;
