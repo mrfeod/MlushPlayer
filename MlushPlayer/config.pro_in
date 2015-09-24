@@ -1,0 +1,1 @@
+DEFINES += CONST_APP_ID=<int>
