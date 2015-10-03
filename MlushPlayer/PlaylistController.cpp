@@ -14,7 +14,7 @@ PlaylistController::PlaylistController(QObject *parent) : QObject(parent)
 
 void PlaylistController::SetPlaylistFromJSON(const QString& jsonString)
 {
-	QVector<PlaylistItemData> data;
+    QList<PlaylistItemData> data;
 	QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
 	QJsonArray items = doc.object().value("response").toObject().value("items").toArray();
 
@@ -27,10 +27,16 @@ void PlaylistController::SetPlaylistFromJSON(const QString& jsonString)
 		itemData.url      = obj.value("url").toString();
 		itemData.duration = obj.value("duration").toInt();
 
-		data.push_back(itemData);
+        data.append(itemData);
 	}
 
 	m_playlist = data;
+
+    Q_FOREACH(auto item, m_playlist)
+    {
+        QMediaContent playlistItem(item.url);
+        m_mediaPlaylist.append(playlistItem);
+    }
 
 	Q_FOREACH(auto item, m_playlist)
 	{

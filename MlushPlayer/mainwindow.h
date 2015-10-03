@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "VkManager/VkOAuthView.h"
+#include "Player/PlayerForm.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,19 +17,22 @@ class MainWindow : public QMainWindow
 public:
 	enum Pages
 	{
-		PageAuth = 0
+		PageAuth = 0,
+		PagePlayer
 	};
 
 	explicit MainWindow(QWidget *parent = 0);
 	virtual ~MainWindow();
 
 	void SetPage(Pages page);
-	VkOAuthView* GetAuthPage();
+	QSharedPointer<VkOAuthView> GetAuthPage();
+	QSharedPointer<PlayerForm> GetPlayerPage();
 
 private:
 	Ui::MainWindow *ui;
 
-	QScopedPointer<VkOAuthView> m_vkAuthView;
+	QSharedPointer<VkOAuthView> m_vkAuthView;
+	QSharedPointer<PlayerForm> m_playerView;
 };
 
 #endif // MAINWINDOW_H

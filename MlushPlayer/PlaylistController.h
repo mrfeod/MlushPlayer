@@ -3,7 +3,9 @@
 
 #include <QObject>
 
-#include <QVector>
+#include <QList>
+
+#include <QMediaContent>
 
 struct PlaylistItemData
 {
@@ -19,11 +21,14 @@ class PlaylistController : public QObject
 public:
 	explicit PlaylistController(QObject *parent = 0);
 
+    QList<QMediaContent> GetMediaPlaylist() { return m_mediaPlaylist; }
+
 public slots:
 	void SetPlaylistFromJSON(const QString& jsonString);
 
 private:
-	QVector<PlaylistItemData> m_playlist;
+    QList<PlaylistItemData> m_playlist;
+    QList<QMediaContent> m_mediaPlaylist;
 };
 
 #endif // PLAYLISTCONTROLLER_H
