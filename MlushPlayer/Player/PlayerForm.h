@@ -6,6 +6,8 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 
+#include "Player/playlistitemdata.h"
+
 namespace Ui {
 class PlayerForm;
 }
@@ -18,13 +20,14 @@ public:
 	explicit PlayerForm(QWidget *parent = 0);
 	~PlayerForm();
 
-    void AddToPlaylist(QList<QMediaContent> playlistContent) { m_playlist.addMedia(playlistContent); }
+    void AddToPlaylist(QList<PlaylistItemData> playlistItemData);
 
 private:
 	Ui::PlayerForm *ui;
 
     QMediaPlayer m_player;
     QMediaPlaylist m_playlist;
+    QList<PlaylistItemData> m_playlistData;
 };
 
 #endif // PLAYERFORM_H

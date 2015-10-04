@@ -25,14 +25,14 @@ public:
 	virtual ~MainWindow();
 
 	void SetPage(Pages page);
-	QSharedPointer<VkOAuthView> GetAuthPage();
-	QSharedPointer<PlayerForm> GetPlayerPage();
+    VkOAuthView* GetAuthPage();
+    PlayerForm* GetPlayerPage();
 
 private:
 	Ui::MainWindow *ui;
 
-	QSharedPointer<VkOAuthView> m_vkAuthView;
-	QSharedPointer<PlayerForm> m_playerView;
+    VkOAuthView* m_vkAuthView;
+    PlayerForm* m_playerView;
 };
 
 #endif // MAINWINDOW_H

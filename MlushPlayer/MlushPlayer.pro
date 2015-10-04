@@ -37,7 +37,8 @@ HEADERS  += mainwindow.h \
     Player/ControlPanel.h \
     ObjectsConnector/ObjectsConnector.h \
     ObjectsConnector/MlushConnectorID.h \
-    Player/playlistitemwidget.h
+    Player/playlistitemwidget.h \
+    Player/playlistitemdata.h
 
 FORMS    += mainwindow.ui \
     Player/PlayerForm.ui \

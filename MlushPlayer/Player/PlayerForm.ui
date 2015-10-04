@@ -51,7 +51,29 @@
       </widget>
      </item>
      <item>
-      <widget class="QListView" name="playlistView"/>
+      <widget class="QListWidget" name="playlistWidget">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+       </property>
+       <property name="showDropIndicator" stdset="0">
+        <bool>false</bool>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectItems</enum>
+       </property>
+       <property name="batchSize">
+        <number>6000</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

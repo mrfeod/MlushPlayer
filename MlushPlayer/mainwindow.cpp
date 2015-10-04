@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->setupUi(this);
 
 	// Порядок важен
-	ui->stackedWidget->addWidget(m_vkAuthView.data());
-	ui->stackedWidget->addWidget(m_playerView.data());
+    ui->stackedWidget->addWidget(m_vkAuthView);
+    ui->stackedWidget->addWidget(m_playerView);
 }
 
 MainWindow::~MainWindow()
@@ -26,12 +26,12 @@ void MainWindow::SetPage(Pages page)
 	ui->stackedWidget->setCurrentIndex(page);
 }
 
-QSharedPointer<VkOAuthView> MainWindow::GetAuthPage()
+VkOAuthView* MainWindow::GetAuthPage()
 {
 	return m_vkAuthView;
 }
 
-QSharedPointer<PlayerForm> MainWindow::GetPlayerPage()
+PlayerForm* MainWindow::GetPlayerPage()
 {
 	return m_playerView;
 }
