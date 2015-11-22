@@ -16,15 +16,15 @@ public:
 	~ControlPanel();
 
 public slots:
-    void SetTitle(const QString& title);
-    void SetDuration(const qint64& duration);
-    void SetPosition(const qint64& position);
+	void SetTitle(const QString& title);
+	void SetDuration(const qint64& duration);
+	void SetPosition(const qint64& position);
 
 signals:
-    void play(bool toggled);
-    void next();
-    void prev();
-    void positionChanged(const qint64& position);
+	void play(bool toggled);
+	void next();
+	void prev();
+	void positionChanged(const qint64& position);
 
 private:
 	Ui::ControlPanel *ui;

@@ -7,10 +7,10 @@ public: static QString propName() {return #propName;}
 
 class MlushConnectorID : public QObject
 {
-   Q_OBJECT
+	Q_OBJECT
 
-   ADD_PROPERTY(PLAYLIST_RECIEVED)
+	ADD_PROPERTY(PLAYLIST_RECIEVED)
 
 public:
-   explicit MlushConnectorID(QObject *parent = 0) : QObject(parent) {}
+	explicit MlushConnectorID(QObject *parent = 0) : QObject(parent) {}
 };

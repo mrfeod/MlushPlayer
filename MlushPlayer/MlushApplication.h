@@ -27,7 +27,7 @@ private:
 private:
 	QWidget* m_mainWindow;
 
-    VkManager* m_vkManager;
+	VkManager* m_vkManager;
 };
 
 #define mlushApp (static_cast<MlushApplication*>(QApplication::instance()))

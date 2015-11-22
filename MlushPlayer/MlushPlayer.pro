@@ -9,50 +9,47 @@ include(config.pro)
 
 CONFIG += c++11
 
-QT       += core gui webkitwidgets multimedia
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui webkitwidgets multimedia widgets
 
 TARGET = MlushPlayer
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    VkManager/VkManager.cpp \
-    VkManager/VkOAuthView.cpp \
-    MlushApplication.cpp \
-    PlaylistController.cpp \
-    Player/PlayerForm.cpp \
-    Player/ControlPanel.cpp \
-    ObjectsConnector/ObjectsConnector.cpp \
-    Player/playlistitemwidget.cpp
+		mainwindow.cpp \
+	VkManager/VkManager.cpp \
+	VkManager/VkOAuthView.cpp \
+	MlushApplication.cpp \
+	PlaylistController.cpp \
+	Player/PlayerForm.cpp \
+	Player/ControlPanel.cpp \
+	ObjectsConnector/ObjectsConnector.cpp \
+	Player/playlistitemwidget.cpp
 
 HEADERS  += mainwindow.h \
-    VkManager/VkManager.h \
-    VkManager/VkOAuthView.h \
-    MlushApplication.h \
-    PlaylistController.h \
-    Player/PlayerForm.h \
-    Player/ControlPanel.h \
-    ObjectsConnector/ObjectsConnector.h \
-    ObjectsConnector/MlushConnectorID.h \
-    Player/playlistitemwidget.h \
-    Player/playlistitemdata.h
+	VkManager/VkManager.h \
+	VkManager/VkOAuthView.h \
+	MlushApplication.h \
+	PlaylistController.h \
+	Player/PlayerForm.h \
+	Player/ControlPanel.h \
+	ObjectsConnector/ObjectsConnector.h \
+	ObjectsConnector/MlushConnectorID.h \
+	Player/playlistitemwidget.h \
+	Player/playlistitemdata.h
 
 FORMS    += mainwindow.ui \
-    Player/PlayerForm.ui \
-    Player/ControlPanel.ui \
-    Player/playlistitemwidget.ui
+	Player/PlayerForm.ui \
+	Player/ControlPanel.ui \
+	Player/playlistitemwidget.ui
 
 CONFIG( debug, debug|release ) {
-    # debug
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/MlushPlayer.exe))
-    BIN_DIR = $$shell_path($${OUT_PWD}/debug)
+	# debug
+	DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/MlushPlayer.exe))
+	BIN_DIR = $$shell_path($${OUT_PWD}/debug)
 } else {
-    # release
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/MlushPlayer.exe))
-    BIN_DIR = $$shell_path($${OUT_PWD}/release)
+	# release
+	DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/MlushPlayer.exe))
+	BIN_DIR = $$shell_path($${OUT_PWD}/release)
 }
 
 #QMAKE_POST_LINK = windeployqt $${DEPLOY_TARGET} && copy D:\Development\SDK\SSL\mingw491_32\*.dll $${BIN_DIR}

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSystemTrayIcon>
 
 #include "VkManager/VkOAuthView.h"
 #include "Player/PlayerForm.h"
@@ -25,14 +26,15 @@ public:
 	virtual ~MainWindow();
 
 	void SetPage(Pages page);
-    VkOAuthView* GetAuthPage();
-    PlayerForm* GetPlayerPage();
+	VkOAuthView* GetAuthPage();
+	PlayerForm* GetPlayerPage();
 
 private:
 	Ui::MainWindow *ui;
+	QSystemTrayIcon m_tray;
 
-    VkOAuthView* m_vkAuthView;
-    PlayerForm* m_playerView;
+	VkOAuthView* m_vkAuthView;
+	PlayerForm* m_playerView;
 };
 
 #endif // MAINWINDOW_H

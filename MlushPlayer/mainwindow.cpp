@@ -6,14 +6,15 @@
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow),
+	m_tray(this),
 	m_vkAuthView(new VkOAuthView(this)),
 	m_playerView(new PlayerForm(this))
 {
 	ui->setupUi(this);
 
 	// Порядок важен
-    ui->stackedWidget->addWidget(m_vkAuthView);
-    ui->stackedWidget->addWidget(m_playerView);
+	ui->stackedWidget->addWidget(m_vkAuthView);
+	ui->stackedWidget->addWidget(m_playerView);
 }
 
 MainWindow::~MainWindow()

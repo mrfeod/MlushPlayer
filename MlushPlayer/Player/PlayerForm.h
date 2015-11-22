@@ -20,14 +20,14 @@ public:
 	explicit PlayerForm(QWidget *parent = 0);
 	~PlayerForm();
 
-    void AddToPlaylist(QList<PlaylistItemData> playlistItemData);
+	void AddToPlaylist(QList<PlaylistItemData> playlistItemData);
 
 private:
 	Ui::PlayerForm *ui;
 
-    QMediaPlayer m_player;
-    QMediaPlaylist m_playlist;
-    QList<PlaylistItemData> m_playlistData;
+	QMediaPlayer m_player;
+	QMediaPlaylist m_playlist;
+	QList<PlaylistItemData> m_playlistData;
 };
 
 #endif // PLAYERFORM_H

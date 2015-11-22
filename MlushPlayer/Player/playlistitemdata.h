@@ -5,10 +5,10 @@
 
 struct PlaylistItemData
 {
-    QString artist;
-    QString title;
-    QString url;
-    int duration;
+	QString artist;
+	QString title;
+	QString url;
+	int duration;
 };
 
 #endif // PLAYLISTITEMDATA
