@@ -11,9 +11,7 @@ class MlushApplication : public QApplication
 {
 	Q_OBJECT
 public:
-	explicit MlushApplication(int &argc, char **argv)
-		: QApplication(argc, argv)
-	{}
+	explicit MlushApplication(int &argc, char **argv);
 
 public:
 	void SetMainWindow(QWidget* mainWindow) { m_mainWindow = mainWindow; }

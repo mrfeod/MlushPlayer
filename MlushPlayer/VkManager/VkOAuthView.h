@@ -3,6 +3,8 @@
 
 #include <QtWebKitWidgets>
 
+#include "VkCookieJar.h"
+
 class VkOAuthView : public QWebView
 {
 	Q_OBJECT
@@ -39,6 +41,9 @@ public:
 	void SetAppID(int appID) { m_appID = appID; }
 	void SetPermissions(Permissions permissions) { m_permissions = permissions; }
 
+	QString getCookies() { return m_cookies; }
+	void setCookies(const QString& cookies);
+
 	void OpenAuthPage();
 
 signals:
@@ -49,9 +54,11 @@ private slots:
 	void OnUrlChanged(const QUrl &newUrl);
 
 private:
-	int m_appID;
-	Permissions m_permissions;
+	int m_appID = -1;
+	Permissions m_permissions = None;
 
+	QString m_cookies;
+	VkCookieJar* m_cookieJar;
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(VkOAuthView::Permissions)
 

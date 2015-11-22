@@ -15,7 +15,7 @@ TARGET = MlushPlayer
 TEMPLATE = app
 
 SOURCES += main.cpp\
-		mainwindow.cpp \
+	mainwindow.cpp \
 	VkManager/VkManager.cpp \
 	VkManager/VkOAuthView.cpp \
 	MlushApplication.cpp \
@@ -23,7 +23,8 @@ SOURCES += main.cpp\
 	Player/PlayerForm.cpp \
 	Player/ControlPanel.cpp \
 	ObjectsConnector/ObjectsConnector.cpp \
-	Player/playlistitemwidget.cpp
+	Player/playlistitemwidget.cpp \
+    VkManager/VkCookieJar.cpp
 
 HEADERS  += mainwindow.h \
 	VkManager/VkManager.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
 	ObjectsConnector/ObjectsConnector.h \
 	ObjectsConnector/MlushConnectorID.h \
 	Player/playlistitemwidget.h \
-	Player/playlistitemdata.h
+	Player/playlistitemdata.h \
+    VkManager/VkCookieJar.h
 
 FORMS    += mainwindow.ui \
 	Player/PlayerForm.ui \
