@@ -15,6 +15,7 @@ public slots:
 	void SetUserData(const QString &accessToken, int expiresInSecs, int userID);
 
 	void GetPlaylist();
+	void GetPlaylistFromSearch(const QString &question);
 
 private slots:
 	void onReply();

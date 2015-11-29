@@ -1,6 +1,9 @@
 #include "PlayerForm.h"
 #include "ui_PlayerForm.h"
 
+#include "ObjectsConnector/MlushConnectorID.h"
+#include "ObjectsConnector/ObjectsConnector.h"
+
 PlayerForm::PlayerForm(QWidget *parent) :
 	QWidget(parent),
 	ui(new Ui::PlayerForm)
@@ -38,11 +41,29 @@ PlayerForm::PlayerForm(QWidget *parent) :
 		m_playlist.setCurrentIndex(ui->playlistWidget->currentRow());
 	});
 
+	connect(ui->searchButton, &QPushButton::clicked, [this]()
+	{
+		QString request = ui->searchLine->text();
+		if(request.isEmpty())
+			emit PlaylistRequest();
+		else
+			emit SearchRequest(request);
+	});
+	ObjectsConnector::registerEmitter(MlushConnectorID::PLAYLIST_REQUEST(), this, SIGNAL(PlaylistRequest()));
+	ObjectsConnector::registerEmitter(MlushConnectorID::SEARCH_REQUEST(), this, SIGNAL(SearchRequest(QString)));
+
 	m_player.setPlaylist(&m_playlist);
 }
 
-void PlayerForm::AddToPlaylist(QList<PlaylistItemData> playlistItemData)
+void PlayerForm::AddToPlaylist(QList<PlaylistItemData> playlistItemData, bool clear/*=false*/)
 {
+	if(clear)
+	{
+		m_playlistData.clear();
+		m_playlist.clear();
+		ui->playlistWidget->clear();
+	}
+
 	bool playlistEmpty = m_playlistData.size() == 0;
 	Q_FOREACH(auto item, playlistItemData)
 	{

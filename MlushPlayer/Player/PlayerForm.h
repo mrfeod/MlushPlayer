@@ -20,7 +20,11 @@ public:
 	explicit PlayerForm(QWidget *parent = 0);
 	~PlayerForm();
 
-	void AddToPlaylist(QList<PlaylistItemData> playlistItemData);
+	void AddToPlaylist(QList<PlaylistItemData> playlistItemData, bool clear = false);
+
+signals:
+	void PlaylistRequest();
+	void SearchRequest(const QString& request);
 
 private:
 	Ui::PlayerForm *ui;

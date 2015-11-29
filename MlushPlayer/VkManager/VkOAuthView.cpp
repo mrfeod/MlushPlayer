@@ -19,7 +19,7 @@ void VkOAuthView::OpenAuthPage()
 	url.addQueryItem("client_id", QString::number(m_appID));
 	url.addQueryItem("scope", QString::number(m_permissions));
 	url.addQueryItem("display", "mobile");
-	url.addQueryItem("v", "5.37");
+	url.addQueryItem("v", "5.40");
 	url.addQueryItem("redirect_uri", "http://api.vkontakte.ru/blank.html");
 	url.addQueryItem("response_type", "token");
 
