@@ -25,6 +25,7 @@ signals:
 	void next();
 	void prev();
 	void positionChanged(const qint64& position);
+	void volumeChanged(const qint64& volume);
 
 private:
 	Ui::ControlPanel *ui;

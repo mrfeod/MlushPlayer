@@ -34,12 +34,15 @@ PlayerForm::PlayerForm(QWidget *parent) :
 			ui->playlistWidget->setCurrentRow(position);
 		}
 	});
-	connect(&m_player, &QMediaPlayer::positionChanged, ui->controlPanel, &ControlPanel::SetPosition);
-	connect(ui->controlPanel, &ControlPanel::positionChanged, &m_player, &QMediaPlayer::setPosition);
 	connect(ui->playlistWidget, &QListWidget::itemActivated, [this]()
 	{
 		m_playlist.setCurrentIndex(ui->playlistWidget->currentRow());
 	});
+
+	connect(&m_player, &QMediaPlayer::positionChanged, ui->controlPanel, &ControlPanel::SetPosition);
+	connect(ui->controlPanel, &ControlPanel::positionChanged, &m_player, &QMediaPlayer::setPosition);
+
+	connect(ui->controlPanel, &ControlPanel::volumeChanged, &m_player, &QMediaPlayer::setVolume);
 
 	connect(ui->searchButton, &QPushButton::clicked, [this]()
 	{

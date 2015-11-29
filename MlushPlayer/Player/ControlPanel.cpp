@@ -12,6 +12,9 @@ ControlPanel::ControlPanel(QWidget *parent) :
 	connect(ui->prevButton, &QPushButton::pressed, this, &ControlPanel::prev);
 
 	connect(ui->timelineSlider, QSlider::sliderMoved, this, &ControlPanel::positionChanged);
+	connect(ui->volumeSlider, QSlider::valueChanged, this, &ControlPanel::volumeChanged);
+
+	emit volumeChanged(ui->volumeSlider->value());
 }
 
 ControlPanel::~ControlPanel()
