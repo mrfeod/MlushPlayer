@@ -1,6 +1,9 @@
 #include "ControlPanel.h"
 #include "ui_ControlPanel.h"
 
+#include "ObjectsConnector/MlushConnectorID.h"
+#include "ObjectsConnector/ObjectsConnector.h"
+
 ControlPanel::ControlPanel(QWidget *parent) :
 	QWidget(parent),
 	ui(new Ui::ControlPanel)
@@ -13,6 +16,8 @@ ControlPanel::ControlPanel(QWidget *parent) :
 
 	connect(ui->timelineSlider, QSlider::sliderMoved, this, &ControlPanel::positionChanged);
 	connect(ui->volumeSlider, QSlider::valueChanged, this, &ControlPanel::volumeChanged);
+
+	ObjectsConnector::registerEmitter(MlushConnectorID::RANDOM_MODE(), ui->randomModeButton, &QPushButton::toggled);
 
 	emit volumeChanged(ui->volumeSlider->value());
 }

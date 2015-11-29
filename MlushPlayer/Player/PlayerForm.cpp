@@ -55,6 +55,8 @@ PlayerForm::PlayerForm(QWidget *parent) :
 	ObjectsConnector::registerEmitter(MlushConnectorID::PLAYLIST_REQUEST(), this, SIGNAL(PlaylistRequest()));
 	ObjectsConnector::registerEmitter(MlushConnectorID::SEARCH_REQUEST(), this, SIGNAL(SearchRequest(QString)));
 
+	ObjectsConnector::registerReceiver(MlushConnectorID::RANDOM_MODE(), this, &PlayerForm::SetRandomMode);
+
 	m_player.setPlaylist(&m_playlist);
 }
 
@@ -80,6 +82,11 @@ void PlayerForm::AddToPlaylist(QList<PlaylistItemData> playlistItemData, bool cl
 	{
 		m_playlist.setCurrentIndex(0);
 	}
+}
+
+PlayerForm::SetRandomMode(bool random)
+{
+	m_randomMode = random;
 }
 
 PlayerForm::~PlayerForm()

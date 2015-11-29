@@ -13,6 +13,8 @@ class MlushConnectorID : public QObject
 	ADD_PROPERTY(PLAYLIST_REQUEST)
 	ADD_PROPERTY(SEARCH_REQUEST)
 
+	ADD_PROPERTY(RANDOM_MODE)
+
 public:
 	explicit MlushConnectorID(QObject *parent = 0) : QObject(parent) {}
 };

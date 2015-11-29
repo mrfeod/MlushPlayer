@@ -22,6 +22,9 @@ public:
 
 	void AddToPlaylist(QList<PlaylistItemData> playlistItemData, bool clear = false);
 
+private slots:
+	SetRandomMode(bool random);
+
 signals:
 	void PlaylistRequest();
 	void SearchRequest(const QString& request);
@@ -32,6 +35,8 @@ private:
 	QMediaPlayer m_player;
 	QMediaPlaylist m_playlist;
 	QList<PlaylistItemData> m_playlistData;
+
+	bool m_randomMode;
 };
 
 #endif // PLAYERFORM_H
